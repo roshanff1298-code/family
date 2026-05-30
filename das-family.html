@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Das Family 🌸</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #c9a84c;
+  --gold-light: #e8c97a;
+  --rose: #a0445a;
+  --rose-light: #e8899a;
+  --blush: #fde8ef;
+  --cream: #fdf8f0;
+  --deep: #1c0a12;
+  --charcoal: #2c2420;
+  --soft: #fefcf8;
+  --marigold: #e8961e;
+  --leaf: #4a6e2a;
+  --sky: #3a6ea8;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--charcoal);
+  overflow-x: hidden;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #160608 0%, #3b0f22 35%, #5c1a38 60%, #2a0c1c 85%, #0e0408 100%);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  padding: 60px 20px;
+}
+
+.hero-bg-pattern {
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(201,168,76,0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(160,68,90,0.12) 0%, transparent 50%),
+    radial-gradient(circle at 50% 10%, rgba(232,150,30,0.06) 0%, transparent 40%);
+}
+
+.mandala {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.15);
+  animation: spin linear infinite;
+}
+.m1 { width:500px; height:500px; top:-150px; left:-150px; animation-duration:60s; box-shadow: inset 0 0 60px rgba(201,168,76,0.04); }
+.m2 { width:360px; height:360px; top:-90px; left:-90px; animation-duration:40s; animation-direction: reverse; border-style: dashed; }
+.m3 { width:600px; height:600px; bottom:-200px; right:-200px; animation-duration:80s; }
+.m4 { width:420px; height:420px; bottom:-110px; right:-110px; animation-duration:50s; animation-direction: reverse; border-style: dashed; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.petals { position:absolute; inset:0; pointer-events:none; }
+.petal {
+  position: absolute;
+  animation: fallPetal linear infinite;
+  opacity: 0.5;
+  font-size: 1rem;
+}
+@keyframes fallPetal {
+  0% { transform: translateY(-30px) rotate(0deg) scale(0.8); opacity:0; }
+  10% { opacity: 0.55; }
+  90% { opacity: 0.3; }
+  100% { transform: translateY(105vh) rotate(540deg) scale(1.1); opacity:0; }
+}
+
+.hero-inner { position:relative; z-index:3; text-align:center; }
+
+.eyebrow {
+  font-size: 0.68rem;
+  letter-spacing: 0.5em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: riseUp 0.9s 0.2s ease forwards;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  color: #fff;
+  line-height: 0.95;
+  opacity: 0;
+  animation: riseUp 0.9s 0.4s ease forwards;
+}
+.hero-title .surname {
+  color: var(--gold);
+  font-style: italic;
+  display: block;
+}
+
+.ornament {
+  display: flex; align-items: center; gap: 20px;
+  justify-content: center; margin: 28px 0 20px;
+  opacity: 0;
+  animation: riseUp 0.9s 0.6s ease forwards;
+}
+.ornament-line { width: 80px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
+.ornament-line.r { background: linear-gradient(90deg, var(--gold), transparent); }
+.ornament-gem {
+  width: 10px; height: 10px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  box-shadow: 0 0 12px var(--gold);
+}
+
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+  opacity: 0;
+  animation: riseUp 0.9s 0.7s ease forwards;
+}
+
+.hero-count {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: riseUp 0.9s 0.9s ease forwards;
+}
+
+.scroll-down {
+  position:absolute; bottom:36px; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:10px;
+  color: rgba(255,255,255,0.3);
+  font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+  opacity:0; animation: riseUp 0.9s 1.2s ease forwards;
+}
+.scroll-down-arrow {
+  width: 22px; height: 22px;
+  border-right: 1px solid rgba(255,255,255,0.3);
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  transform: rotate(45deg);
+  animation: bounce 1.8s ease infinite;
+}
+@keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)} 50%{transform:rotate(45deg) translateY(6px)} }
+
+@keyframes riseUp {
+  from { opacity:0; transform: translateY(28px); }
+  to { opacity:1; transform: translateY(0); }
+}
+
+/* TICKER BANNER */
+.ticker {
+  background: linear-gradient(90deg, #fde8ef, #fff5e8, #fde8ef);
+  border-top: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold);
+  padding: 12px 0;
+  overflow: hidden;
+  position: relative;
+}
+.ticker-track {
+  display: flex; gap: 0;
+  animation: tickerMove 22s linear infinite;
+  width: max-content;
+}
+@keyframes tickerMove { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.ticker-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 0 48px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--rose);
+  white-space: nowrap;
+}
+.ticker-item .ico { color: var(--gold); font-size: 1.3rem; }
+
+/* GROUP PHOTOS */
+.photos-section {
+  padding: 72px 20px 48px;
+  text-align: center;
+  background: white;
+}
+.sec-label {
+  font-size: 0.65rem; letter-spacing: 0.45em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 10px;
+}
+.sec-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--charcoal);
+  margin-bottom: 6px;
+}
+.sec-divider {
+  display:flex; align-items:center; gap:14px; justify-content:center; margin: 16px 0 40px;
+}
+.sec-divider::before, .sec-divider::after {
+  content:''; width:50px; height:1px; background: rgba(201,168,76,0.5);
+}
+.sec-divider span { color: var(--gold); font-size: 1.1rem; }
+
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.photo-slot {
+  border-radius: 18px;
+  border: 2px dashed rgba(201,168,76,0.4);
+  background: var(--cream);
+  aspect-ratio: 4/3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-size: 2.5rem;
+}
+.photo-slot:hover {
+  border-color: var(--gold);
+  background: #fdf4e3;
+  transform: scale(1.01);
+}
+.photo-slot img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  position: absolute; inset: 0;
+  border-radius: 16px;
+}
+.photo-slot .slot-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  color: rgba(44,36,32,0.45);
+  margin-top: 8px;
+  letter-spacing: 0.05em;
+}
+.photo-slot .slot-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.45);
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+  color: white; font-size: 0.85rem;
+  font-family: 'DM Sans', sans-serif;
+}
+.photo-slot:hover .slot-overlay { opacity: 1; }
+
+/* BRIDE SECTION */
+.bride-wrap {
+  padding: 64px 20px 48px;
+  display: flex; justify-content: center;
+  background: linear-gradient(180deg, #fdf8f0 0%, white 100%);
+}
+
+.bride-card {
+  max-width: 520px; width: 100%;
+  position: relative;
+  border-radius: 28px;
+  background: white;
+  box-shadow: 0 24px 80px rgba(160,68,90,0.18), 0 0 0 1px rgba(201,168,76,0.15);
+  padding: 48px 36px 36px;
+  overflow: visible;
+}
+
+.bride-card-glow {
+  position: absolute;
+  inset: -3px; border-radius: 31px;
+  background: linear-gradient(135deg, var(--gold), var(--rose), var(--marigold), var(--gold));
+  background-size: 300% 300%;
+  animation: glowShift 5s ease infinite;
+  z-index: -1;
+  filter: blur(1px);
+}
+@keyframes glowShift {
+  0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%}
+}
+
+.bride-tag {
+  position: absolute;
+  top: -18px; left: 50%; transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--rose), #c0546a);
+  color: white;
+  padding: 7px 28px;
+  border-radius: 24px;
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(160,68,90,0.45);
+  white-space: nowrap;
+}
+
+/* Bride photo */
+.bride-photo-ring-wrap {
+  position: relative;
+  width: 150px; height: 150px;
+  margin: 8px auto 24px;
+}
+.bride-ring-outer, .bride-ring-inner {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  top: 50%; left: 50%;
+}
+.bride-ring-outer {
+  width: 170px; height: 170px;
+  margin: -85px 0 0 -85px;
+  border-style: dashed;
+  opacity: 0.5;
+  animation: spin 10s linear infinite;
+}
+.bride-ring-inner {
+  width: 185px; height: 185px;
+  margin: -92.5px 0 0 -92.5px;
+  opacity: 0.2;
+  animation: spin 16s linear infinite reverse;
+}
+
+.profile-img-wrap {
+  width: 150px; height: 150px;
+  border-radius: 50%;
+  border: 4px solid white;
+  box-shadow: 0 8px 32px rgba(160,68,90,0.25);
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  background: linear-gradient(135deg, #fde8ef, #ffe4f0);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  transition: transform 0.3s ease;
+}
+.profile-img-wrap:hover { transform: scale(1.04); }
+.profile-img-wrap img { width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+.profile-img-wrap .default-ico { font-size: 2.8rem; }
+.profile-img-wrap .upload-txt {
+  font-size: 0.52rem; color: rgba(160,68,90,0.6);
+  font-family: 'DM Sans', sans-serif; letter-spacing: 0.05em; margin-top: 3px;
+}
+.profile-img-wrap .img-overlay {
+  position:absolute; inset:0;
+  background: rgba(160,68,90,0.5);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; transition:opacity 0.2s;
+  color:white; font-size:0.75rem; font-family:'DM Sans',sans-serif;
+  border-radius: 50%;
+}
+.profile-img-wrap:hover .img-overlay { opacity:1; }
+
+.bride-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-style: italic;
+  color: var(--rose); text-align: center;
+  margin-bottom: 8px;
+}
+.bride-pills {
+  display:flex; justify-content:center; gap:10px; margin-bottom: 20px;
+}
+.pill {
+  padding: 4px 14px; border-radius: 20px; font-size: 0.72rem; font-weight: 500;
+}
+.pill-age { background: rgba(201,168,76,0.12); color: #a07820; border:1px solid rgba(201,168,76,0.3); }
+.pill-f { background: rgba(240,160,184,0.15); color: #b04070; border:1px solid rgba(240,160,184,0.3); }
+.pill-m { background: rgba(100,160,220,0.15); color: #2860a0; border:1px solid rgba(100,160,220,0.3); }
+
+/* Wedding animation box */
+.wedding-box {
+  background: linear-gradient(135deg, #fff5f8, #fff8ee);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 18px;
+  padding: 22px 20px;
+  margin: 4px 0 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.wedding-box::before {
+  content:'';
+  position:absolute; inset:0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.08), transparent 70%);
+}
+
+.rings-wrap {
+  display: flex; justify-content: center;
+  height: 56px; position: relative; margin-bottom: 8px;
+}
+.wr {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  border: 5px solid;
+  position: absolute;
+  top: 4px;
+}
+.wr1 {
+  border-color: var(--gold);
+  left: calc(50% - 34px);
+  animation: ringSwing 3s ease-in-out infinite;
+  box-shadow: 0 0 18px rgba(201,168,76,0.5), inset 0 0 10px rgba(201,168,76,0.1);
+}
+.wr2 {
+  border-color: var(--rose);
+  left: calc(50% - 12px);
+  animation: ringSwing 3s ease-in-out 0.6s infinite;
+  box-shadow: 0 0 18px rgba(160,68,90,0.5), inset 0 0 10px rgba(160,68,90,0.1);
+}
+@keyframes ringSwing {
+  0%,100%{ transform: rotate(-10deg) translateY(0); }
+  50%{ transform: rotate(10deg) translateY(-6px); }
+}
+
+.wedding-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem; font-style: italic;
+  color: var(--rose);
+  margin: 4px 0 8px;
+}
+
+.hearts-row {
+  display:flex; justify-content:center; gap:10px;
+}
+.heart {
+  font-size: 1.1rem;
+  animation: heartPulse 1.6s ease infinite;
+}
+.heart:nth-child(2){ animation-delay: 0.3s; }
+.heart:nth-child(3){ animation-delay: 0.6s; }
+@keyframes heartPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.35)} }
+
+.wedding-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.82rem;
+  color: rgba(160,68,90,0.65);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+/* sparkles flying */
+.sparkle-fly {
+  position: absolute;
+  pointer-events: none;
+  font-size: 1.1rem;
+  animation: sparkleFloat 2s ease forwards;
+  z-index: 10;
+}
+@keyframes sparkleFloat {
+  0%{opacity:1; transform: translateY(0) scale(1);}
+  100%{opacity:0; transform: translateY(-80px) scale(0.4);}
+}
+
+/* contact info */
+.contact-list { display:flex; flex-direction:column; gap:10px; }
+.cinfo {
+  display:flex; align-items:center; gap:12px;
+  background: #f9f6f0;
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 12px;
+  padding: 11px 16px;
+  font-size: 0.78rem;
+  color: rgba(44,36,32,0.7);
+  transition: background 0.2s;
+}
+.cinfo:hover { background: #f5eedc; }
+.cinfo-icon { font-size: 1rem; min-width: 22px; text-align:center; }
+.cinfo-text { font-family: 'DM Sans', sans-serif; }
+
+/* FAMILY GRID */
+.family-section {
+  padding: 64px 20px 80px;
+  background: var(--cream);
+}
+
+.family-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.member-card {
+  background: white;
+  border-radius: 22px;
+  padding: 28px 22px 24px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+  border: 1px solid rgba(201,168,76,0.1);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+}
+.member-card.visible {
+  opacity: 1; transform: translateY(0);
+}
+.member-card:hover {
+  box-shadow: 0 14px 44px rgba(0,0,0,0.1);
+  transform: translateY(-5px) !important;
+}
+.member-card-top-bar {
+  position: absolute; top:0; left:0; right:0; height:3px;
+  background: linear-gradient(90deg, var(--gold), var(--rose));
+}
+
+.card-photo-area {
+  position: relative;
+  width: 100px; height: 100px;
+  margin: 0 auto 16px;
+}
+.card-photo {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  position: relative; overflow: hidden;
+}
+.card-photo:hover { transform: scale(1.07); }
+.card-photo.f { background: linear-gradient(135deg, #fde8f0, #f5d4e8); }
+.card-photo.m { background: linear-gradient(135deg, #ddeeff, #c8dff5); }
+.card-photo img { width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+.card-photo .upload-hint { font-size: 0.42rem; color: rgba(44,36,32,0.45); font-family:'DM Sans',sans-serif; margin-top:2px; }
+.card-photo .cp-overlay {
+  position:absolute; inset:0; border-radius:50%;
+  background: rgba(0,0,0,0.4);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; transition:opacity 0.2s;
+  color:white; font-size:0.65rem; font-family:'DM Sans',sans-serif;
+}
+.card-photo:hover .cp-overlay { opacity:1; }
+
+.gender-dot {
+  position:absolute; bottom:0; right:0;
+  width:26px; height:26px; border-radius:50%;
+  border:2.5px solid white;
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.75rem; font-weight:700;
+}
+.gender-dot.f { background: #f09ab8; color:#7a2048; }
+.gender-dot.m { background: #80b4e0; color:#1a4878; }
+
+.card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem; text-align:center;
+  color: var(--charcoal); margin-bottom: 8px;
+}
+.card-pills {
+  display:flex; justify-content:center; gap:8px; margin-bottom:16px; flex-wrap:wrap;
+}
+
+.card-contacts { display:flex; flex-direction:column; gap:8px; }
+.card-contact-row {
+  display:flex; align-items:center; gap:10px;
+  background: #f8f5f0;
+  border-radius: 10px; padding: 8px 12px;
+  font-size: 0.73rem; color: rgba(44,36,32,0.6);
+  transition: background 0.2s;
+}
+.card-contact-row:hover { background: #f0ebe0; }
+.cri { font-size: 0.9rem; min-width: 18px; text-align: center; }
+
+/* FOOTER */
+footer {
+  background: linear-gradient(160deg, var(--deep) 0%, #3b0f22 100%);
+  color: rgba(255,255,255,0.45);
+  text-align:center;
+  padding: 48px 20px;
+}
+.footer-family {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem; color: var(--gold); margin-bottom: 10px; font-style: italic;
+}
+footer p { font-size: 0.78rem; letter-spacing: 0.12em; }
+
+/* CONFETTI */
+#confetti {
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  pointer-events:none; z-index:9999;
+}
+.cf {
+  position:absolute;
+  border-radius: 3px;
+  animation: cfFall linear both;
+  top: -20px;
+}
+@keyframes cfFall {
+  0%{opacity:1; transform: translateY(0) rotate(0)}
+  100%{opacity:0; transform: translateY(105vh) rotate(900deg)}
+}
+
+.photo-slot.loaded { border: none; background: #111; }
+.photo-slot.loaded .slot-overlay { opacity: 0; }
+.photo-slot.loaded:hover .slot-overlay { opacity: 1; }
+
+/* FILE INPUTS hidden */
+input[type="file"] { display:none; }
+
+/* Ribbon across bride card on mobile */
+@media(max-width: 520px){
+  .bride-card { padding: 44px 22px 28px; }
+}
+</style>
+</head>
+<body>
+
+<div id="confetti"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="mandala m1"></div>
+  <div class="mandala m2"></div>
+  <div class="mandala m3"></div>
+  <div class="mandala m4"></div>
+  <div class="petals" id="petals"></div>
+
+  <div class="hero-inner">
+    <p class="eyebrow">✦ With Love & Pride ✦</p>
+    <h1 class="hero-title">
+      The <span class="surname">Das</span>
+    </h1>
+    <p class="hero-sub" style="margin-top:4px;">Family</p>
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-gem"></div>
+      <div class="ornament-line r"></div>
+    </div>
+    <p class="hero-sub">Eight Hearts · One Home</p>
+    <p class="hero-count" style="margin-top:10px;">Bound by love, laughter & togetherness</p>
+  </div>
+
+  <div class="scroll-down">
+    <span>Scroll</span>
+    <div class="scroll-down-arrow"></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track" id="tickerTrack">
+    <div class="ticker-item"><span class="ico">💍</span> Priyanka Das is Getting Married Soon! <span class="ico">🌸</span></div>
+    <div class="ticker-item"><span class="ico">✨</span> A New Chapter Begins for Our Family <span class="ico">💕</span></div>
+    <div class="ticker-item"><span class="ico">🌺</span> The Das Family Celebrates! <span class="ico">🎊</span></div>
+    <div class="ticker-item"><span class="ico">🪷</span> Blessings & Joy for our Didi <span class="ico">🌼</span></div>
+    <div class="ticker-item"><span class="ico">💍</span> Priyanka Das is Getting Married Soon! <span class="ico">🌸</span></div>
+    <div class="ticker-item"><span class="ico">✨</span> A New Chapter Begins for Our Family <span class="ico">💕</span></div>
+    <div class="ticker-item"><span class="ico">🌺</span> The Das Family Celebrates! <span class="ico">🎊</span></div>
+    <div class="ticker-item"><span class="ico">🪷</span> Blessings & Joy for our Didi <span class="ico">🌼</span></div>
+  </div>
+</div>
+
+<!-- GROUP PHOTOS -->
+<section class="photos-section">
+  <p class="sec-label">✦ Cherished Moments ✦</p>
+  <h2 class="sec-title">Our Family Album</h2>
+  <div class="sec-divider"><span>🌼</span></div>
+  <div class="photos-grid">
+    <div class="photo-slot loaded">
+      <img src="group1.jpeg" alt="Family Group Photo 1" onerror="this.parentElement.classList.remove('loaded'); this.remove();">
+      <div class="slot-overlay">Family Photo 1</div>
+    </div>
+    <div class="photo-slot loaded">
+      <img src="group2.jpeg" alt="Family Group Photo 2" onerror="this.parentElement.classList.remove('loaded'); this.remove();">
+      <div class="slot-overlay">Family Photo 2</div>
+    </div>
+  </div>
+</section>
+
+<!-- BRIDE CARD -->
+<section class="bride-wrap">
+  <div class="bride-card">
+    <div class="bride-card-glow"></div>
+    <div class="bride-tag">💍 Elder Sister · Bride‑to‑Be 💍</div>
+
+    <div class="bride-photo-ring-wrap">
+      <div class="bride-ring-outer"></div>
+      <div class="bride-ring-inner"></div>
+      <div class="profile-img-wrap" id="bridePhotoWrap">
+        <img src="Priyanka.jpeg" alt="Priyanka Das"
+          onerror="this.style.display='none'; document.getElementById('brideDefault').style.display='flex';">
+        <span class="default-ico" id="brideDefault" style="display:none; flex-direction:column; align-items:center;">👰<span class="upload-txt">Add Photo</span></span>
+        <div class="img-overlay">Priyanka Das</div>
+      </div>
+    </div>
+
+    <h2 class="bride-name">Priyanka Das</h2>
+    <div class="bride-pills">
+      <span class="pill pill-age">Age 32</span>
+      <span class="pill pill-f">Female</span>
+    </div>
+
+    <!-- Wedding Animation -->
+    <div class="wedding-box" id="weddingBox" onclick="burstSparkles(this)">
+      <div class="rings-wrap">
+        <div class="wr wr1"></div>
+        <div class="wr wr2"></div>
+      </div>
+      <p class="wedding-headline">🌸 Going to be Married Soon 🌸</p>
+      <div class="hearts-row">
+        <span class="heart">💕</span>
+        <span class="heart">💖</span>
+        <span class="heart">💕</span>
+      </div>
+      <p class="wedding-sub">✨ A Beautiful New Journey Awaits ✨</p>
+    </div>
+
+    <div class="contact-list">
+      <div class="cinfo">
+        <span class="cinfo-icon">📞</span>
+        <span class="cinfo-text">+91 88151 69171</span>
+      </div>
+      <div class="cinfo">
+        <span class="cinfo-icon">📸</span>
+        <span class="cinfo-text">Instagram: pd812652gmail.com6</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAMILY MEMBERS -->
+<section class="family-section">
+  <div class="section-header" style="text-align:center; margin-bottom:48px;">
+    <p class="sec-label">✦ Our People ✦</p>
+    <h2 class="sec-title">Meet the Family</h2>
+    <div class="sec-divider"><span>🌼</span></div>
+  </div>
+
+  <div class="family-grid" id="familyGrid"></div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-family">Das Family</p>
+  <p>Made with ❤️ &nbsp;·&nbsp; Celebrating togetherness since forever</p>
+</footer>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────────
+const members = [
+  { name:"Lovely Das",        age:30, gender:"f", emoji:"👩", phone:"7389056022",  insta:"lovelydas4031",       photo:"lovely"        },
+  { name:"Suryaprakash Das",  age:28, gender:"m", emoji:"👨", phone:"8260565186",  insta:"suryaprakash_das123", photo:"suryaprakash"  },
+  { name:"Akash Das",         age:25, gender:"m", emoji:"👦", phone:"9114154325",  insta:"shin111chan",          photo:"akash"         },
+  { name:"Ravi Das",          age:24, gender:"m", emoji:"👦", phone:"7978616939",  insta:"bigdog__._",           photo:"ravi"          },
+  { name:"Roshan Das",        age:22, gender:"m", emoji:"🧑", phone:"7735279016",  insta:"roshan_das882",        photo:"roshan"        },
+  { name:"Rishi Das",         age:20, gender:"f", emoji:"👩", phone:"7566887580",  insta:"rixhii.19",            photo:"rishi"         },
+  { name:"Pihu Das",          age:11, gender:"f", emoji:"👧", phone:"7978310643",  insta:"pihu47940",            photo:"pihu"          },
+];
+
+// ── BUILD MEMBER CARDS ────────────────────────────────────────────────────────
+const grid = document.getElementById('familyGrid');
+
+members.forEach((m, i) => {
+  const card = document.createElement('div');
+  card.className = 'member-card';
+
+  const gLabel = m.gender === 'f' ? 'Female' : 'Male';
+  const gSym   = m.gender === 'f' ? '♀' : '♂';
+  const pillCls = m.gender === 'f' ? 'pill-f' : 'pill-m';
+  const pid = `photo_${i}`;
+
+  // Try loading from images folder; fall back to emoji placeholder
+  const imgTag = `<img src="images/${m.photo}.jpg" alt="${m.name}"
+    onerror="this.style.display='none'; document.getElementById('emo_${i}').style.display='block';">`;
+  const emoFallback = `<span id="emo_${i}" style="display:none; flex-direction:column; align-items:center; font-size:2rem;">${m.emoji}<span class="upload-hint">${m.name.split(' ')[0]}</span></span>`;
+
+  card.innerHTML = `
+    <div class="member-card-top-bar"></div>
+    <div class="card-photo-area">
+      <div class="card-photo ${m.gender}" id="${pid}">
+        ${imgTag}
+        ${emoFallback}
+        <div class="cp-overlay">${m.name.split(' ')[0]}</div>
+      </div>
+      <div class="gender-dot ${m.gender}">${gSym}</div>
+    </div>
+    <h3 class="card-name">${m.name}</h3>
+    <div class="card-pills">
+      <span class="pill pill-age">Age ${m.age}</span>
+      <span class="pill ${pillCls}">${gLabel}</span>
+    </div>
+    <div class="card-contacts">
+      <div class="card-contact-row">
+        <span class="cri">📞</span>
+        <span>+91 ${m.phone}</span>
+      </div>
+      <div class="card-contact-row">
+        <span class="cri">📸</span>
+        <span>@${m.insta}</span>
+      </div>
+    </div>
+  `;
+  grid.appendChild(card);
+});
+
+// ── SCROLL REVEAL ─────────────────────────────────────────────────────────────
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), 80 * i);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.member-card').forEach(c => obs.observe(c));
+
+// ── FLOATING PETALS ───────────────────────────────────────────────────────────
+const petalEmojis = ['🌸','🌺','🌼','✨','💮','🌷','🪷'];
+const petalWrap = document.getElementById('petals');
+for (let i = 0; i < 20; i++) {
+  const p = document.createElement('div');
+  p.className = 'petal';
+  p.textContent = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
+  p.style.left = Math.random() * 100 + '%';
+  p.style.animationDuration = (9 + Math.random() * 12) + 's';
+  p.style.animationDelay = (-Math.random() * 18) + 's';
+  p.style.fontSize = (0.7 + Math.random() * 0.9) + 'rem';
+  petalWrap.appendChild(p);
+}
+
+// ── CONFETTI BURST ON LOAD ────────────────────────────────────────────────────
+const cfWrap = document.getElementById('confetti');
+const cfColors = ['#c9a84c','#f5c6d0','#a0445a','#e8961e','#fefefe','#e8c97a','#f09ab8'];
+for (let i = 0; i < 55; i++) {
+  const cf = document.createElement('div');
+  cf.className = 'cf';
+  cf.style.cssText = `
+    left:${Math.random()*100}%;
+    background:${cfColors[Math.floor(Math.random()*cfColors.length)]};
+    width:${7+Math.random()*7}px;
+    height:${7+Math.random()*7}px;
+    border-radius:${Math.random()>0.5?'50%':'3px'};
+    animation-duration:${4+Math.random()*6}s;
+    animation-delay:${Math.random()*4}s;
+    opacity:0;
+  `;
+  cf.style.animationFillMode = 'both';
+  cfWrap.appendChild(cf);
+}
+setTimeout(() => cfWrap.remove(), 11000);
+
+// ── PHOTO UPLOAD HANDLERS ─────────────────────────────────────────────────────
+function loadProfilePhoto(input, wrapId) {
+  if (!input.files || !input.files[0]) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const wrap = document.getElementById(wrapId);
+    // Remove any existing img
+    const old = wrap.querySelector('img');
+    if (old) old.remove();
+    // Hide default content
+    wrap.querySelectorAll('.default-ico, .upload-hint, .upload-txt, span').forEach(el => {
+      if (!el.classList.contains('img-overlay') && !el.classList.contains('cp-overlay')) {
+        el.style.display = 'none';
+      }
+    });
+    const img = document.createElement('img');
+    img.src = e.target.result;
+    wrap.insertBefore(img, wrap.firstChild);
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+
+function loadGroupPhoto(input, slotId) {
+  if (!input.files || !input.files[0]) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const slot = document.getElementById(slotId);
+    const old = slot.querySelector('img');
+    if (old) old.remove();
+    // hide placeholders
+    slot.querySelectorAll('div:not(.slot-overlay)').forEach(d => d.style.display = 'none');
+    const img = document.createElement('img');
+    img.src = e.target.result;
+    slot.insertBefore(img, slot.firstChild);
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+
+// ── SPARKLE BURST on wedding box click ───────────────────────────────────────
+function burstSparkles(box) {
+  const sparkles = ['✨','🌸','💖','🌺','💍','🌼','💕'];
+  for (let i = 0; i < 10; i++) {
+    const sp = document.createElement('span');
+    sp.className = 'sparkle-fly';
+    sp.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+    const rect = box.getBoundingClientRect();
+    const scrollY = window.scrollY || window.pageYOffset;
+    sp.style.left = (Math.random() * box.offsetWidth) + 'px';
+    sp.style.top = (box.offsetTop + rect.height / 2) + 'px';
+    sp.style.animationDuration = (1.2 + Math.random() * 1) + 's';
+    sp.style.animationDelay = (Math.random() * 0.3) + 's';
+    sp.style.fontSize = (0.9 + Math.random() * 0.8) + 'rem';
+    box.appendChild(sp);
+    setTimeout(() => sp.remove(), 2400);
+  }
+}
+</script>
+</body>
+</html>
